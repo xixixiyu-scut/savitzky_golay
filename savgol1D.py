@@ -1,14 +1,12 @@
 import numpy as np
 import time
 def savgol1Dcoeff(order=2,nump=5):
-	#variable	
 	z = np.arange(-(nump-1)/2,(nump+1)/2).reshape(-1,1)
-	#Jacobian
-	J = np.hstack(np.power(z,n) for n in xrange(order+1))
+	A = np.hstack(np.power(z,n) for n in range(order+1))
 	JT = np.transpose(J)
 	JTJ = np.matmul(JT,J)
 	iJTJ = np.linalg.inv(JTJ)
-	C = np.matmul(iJTJ,JT) #iJTJ_JT
+	C = np.matmul(iJTJ,JT) 
 	return C
 
 def savgolfilt(data,order=2,nump=5,h=2):
